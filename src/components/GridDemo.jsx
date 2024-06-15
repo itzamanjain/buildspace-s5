@@ -4,11 +4,14 @@ import { BackgroundBeamsDemo } from "./muComp/BackgroundBeamsDemo";
 import { AnimatedGradientTextDemo } from "./muComp/AnimatedGradientTextDemo";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+import { ClipLoader } from "react-spinners";
 
 const GridBackgroundDemo = () => {
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handlejoin = async () => {
+    setLoading(true);
     try {
       await axios.post("/api/waitlist", {
         email,
@@ -18,6 +21,8 @@ const GridBackgroundDemo = () => {
     } catch (error) {
       toast.error("Something went wrong");
       setEmail("");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -33,7 +38,7 @@ const GridBackgroundDemo = () => {
         Securely capture your thoughts, reflect with AI insights, and unlock your personal growth.
       </p>
 
-      <h1 className="relative z-10 mt-10 text-xl sm:text-2xl md:text-4xl bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600 font-sans font-bold">
+      <h1 className="relative z-10 mt-10 text-2xl sm:text-4xl md:text-5xl bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600 font-sans font-bold">
         Join the waitlist
       </h1>
 
@@ -43,13 +48,18 @@ const GridBackgroundDemo = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="join@aidiary.in"
-          className="rounded-lg border border-neutral-800 focus:ring-2 focus:ring-teal-500 h-10 p-5 text-white bg-neutral-950 placeholder:text-neutral-700 mb-4 sm:mb-0 sm:mr-4"
+          className="rounded-lg  border-2 border-neutral-400 focus:ring-2 focus:ring-teal-500 h-10 p-5 text-white bg-neutral-950 placeholder:text-neutral-700 mb-4 sm:mb-0 sm:mr-4"
         />
         <button
           onClick={handlejoin}
-          className="px-8 py-2 rounded-full bg-gradient-to-b from-blue-500 to-blue-600 text-white focus:ring-2 focus:ring-blue-400 hover:shadow-xl transition duration-200"
+          className="px-8 py-2 rounded-full bg-gradient-to-b from-blue-500 to-blue-600 text-white focus:ring-2 focus:ring-blue-400 hover:shadow-xl transition duration-200 relative"
+          disabled={loading}
         >
-          Join
+          {loading ? (
+            <ClipLoader size={20} color="#ffffff" />
+          ) : (
+            "Join"
+          )}
         </button>
       </div>
       <Toaster />
