@@ -5,7 +5,7 @@ import "./globals.css";
 
 export const metadata = {
   title: "AI Diary",
-  description: "Code Sharing Becoming Easier !!",
+  description: "Your Personal AI-Enhanced Diary !!",
 };
 
 export default function RootLayout({ children }) {
