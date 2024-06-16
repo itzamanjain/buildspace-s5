@@ -1,10 +1,12 @@
 "use client";
 import React, { useState } from "react";
-import { BackgroundBeamsDemo } from "./muComp/BackgroundBeamsDemo";
 import { AnimatedGradientTextDemo } from "./muComp/AnimatedGradientTextDemo";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { ClipLoader } from "react-spinners";
+import Script from 'next/script';
+import Image from "next/image";
+import BuymeacoffeeButton from "./muComp/BuyMeACoffeeButton";
 
 const GridBackgroundDemo = () => {
   const [email, setEmail] = useState("");
@@ -48,7 +50,7 @@ const GridBackgroundDemo = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="join@aidiary.in"
-          className="rounded-lg  border-2 border-neutral-400 focus:ring-2 focus:ring-teal-500 h-10 p-5 text-white bg-neutral-950 placeholder:text-neutral-700 mb-4 sm:mb-0 sm:mr-4"
+          className="rounded-lg border-2 border-neutral-400 focus:ring-2 focus:ring-teal-500 h-10 p-5 text-white bg-neutral-950 placeholder:text-neutral-700 mb-4 sm:mb-0 sm:mr-4"
         />
         <button
           onClick={handlejoin}
@@ -62,9 +64,14 @@ const GridBackgroundDemo = () => {
           )}
         </button>
       </div>
+      <BuymeacoffeeButton />
       <Toaster />
+      
     </div>
   );
 };
 
 export { GridBackgroundDemo };
+
+
+
